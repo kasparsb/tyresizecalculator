@@ -6,6 +6,9 @@ var browserify = require('browserify');
 var watchify = require('watchify');
 var babelify = require('babelify');
 
+var watch = require('gulp-watch');
+var less = require('gulp-less');
+
 // Read package info
 var pkg = require('./package.json');
 
@@ -47,8 +50,24 @@ function bundleJs(browserify) {
         .pipe(gulp.dest(files.dest));
 }
 
+function bundleLess() {
+    gulp.src('./less/app.less')
+        .pipe(
+            less()
+                .on('error', function(er){
+                    console.log(er.type+': '+er.message);
+                    console.log(er.filename+':'+er.line);
+                })
+        )
+        .pipe(gulp.dest(files.dest));
+}
+
 gulp.task('js', function(){
     bundleJs(getBrowserify(files.js));
+});
+
+gulp.task('less', function(){
+    bundleLess();
 });
 
 gulp.task('watchjs', function(){
@@ -65,6 +84,13 @@ gulp.task('watchjs', function(){
     w.bundle().on('data', function() {});
 });
 
+gulp.task('watchless', function(){
+    watch(['./less/**/*.less'], function(){
+        console.log('less files updated');
+        bundleLess();
+    });
+});
 
-gulp.task('default', ['watchjs']);
-gulp.task('dist', ['js']);
+
+gulp.task('default', ['watchjs', 'watchless']);
+gulp.task('dist', ['js', 'less']);

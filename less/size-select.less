@@ -1,0 +1,24 @@
+.size-select {
+    @height: 22px;
+
+    overflow: hidden;
+
+    &__item {
+        display: block;
+        float: left;
+        height: @height;
+        line-height: @height;
+        border: 1px solid silver;
+        padding: 0 2px;
+        margin-left: 2px;
+        cursor: pointer;
+
+        &:first-child {
+            margin-left: 0;
+        }
+
+        &--selected {
+            background: silver;
+        }
+    }
+}
