@@ -1,9 +1,64 @@
-.results {
-    border-collapse: collapse;
-    border: 1px solid silver;
+.compare-results {
+
+    &:after {
+        content: '';
+        display: block;
+        clear: both;
+        height: 0px;
+        overflow: hidden;
+    }
+
+    &__wrap {
+        // Float, so it is not full width
+        float: left;
+        position: relative;
+        padding: @valueFieldHeight 0 0;
+    }
+
+    &__label {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: @valueFieldHeight;
+        line-height: @valueFieldHeight;
+        text-align: center;
+        padding-left: @valueFieldHeight+2px;
+
+        &--y {
+            transform-origin: 0 0;
+            transform: translate3d(0, @valueFieldHeight, 0) rotate(90deg)
+        }
+    }
+
+    &__table {
+        border-collapse: collapse;
+        border: 1px solid @tableBorderColor;    
+    }
 
     &__td {
-        border: 1px solid silver;
-        padding: 2px;
+        border: 1px solid @tableBorderColor;
+        height: @valueFieldHeight;
+        line-height: @valueFieldHeight;
+        padding: 0;
+    }
+
+    &__tdy {
+        width: @valueFieldHeight;
+        text-align: center;
+    }
+
+    &__tdempty {
+        border: none;
+    }
+
+    &__tdlabel {
+        background-color: @tableBorderColor;
+    }
+
+    &__tdx,
+    &__tdvalue {
+        padding: 0 4px;
+        text-align: center;
     }
 }

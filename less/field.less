@@ -1,0 +1,25 @@
+.fields-group {
+    &__heading {
+        margin: 0 0 8px;
+    }
+}
+
+.field {
+    @labelWidth: 70px;
+
+    overflow: hidden;
+    margin-top: 4px;
+
+    &__label {
+        display: block;
+        float: left;
+        width: @labelWidth;
+    }
+    &__control {
+        margin-left: @labelWidth;
+    }
+
+    &--nolabel &__control {
+        margin-left: 0;
+    } 
+}

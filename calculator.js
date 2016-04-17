@@ -99,16 +99,47 @@ export class Calculator extends React.Component {
 
         return (
             <div className="calculator">
-                <SizeSelect items={this.state.size.width} onClick={this.handleWidthClick} />
-                <SizeSelect items={this.state.size.height} onClick={this.handleHeightClick} />
-                <SizeSelect items={this.state.size.radius} onClick={this.handleRadiusClick} />
-                <SizeSelect items={this.state.size.newDiameter} onClick={this.handleNewDiameterClick} />
-                <CompareResults 
-                    widths={this.state.size.width} 
-                    heights={this.state.size.height} 
-                    original={new Tyre(this.state.original.width, this.state.original.height, this.state.original.radius)}
-                    newDiameter={this.state.new.diameter}
-                    />
+                <div className="fields-group">
+                    <h4 className="fields-group__heading">Original size</h4>
+                    <div className="field">
+                        <label className="field__label">Width</label>
+                        <div className="field__control">
+                            <SizeSelect items={this.state.size.width} onClick={this.handleWidthClick} />
+                        </div>
+                    </div>
+                    <div className="field">
+                        <label className="field__label">Height</label>
+                        <div className="field__control">
+                            <SizeSelect items={this.state.size.height} onClick={this.handleHeightClick} />
+                        </div>
+                    </div>
+                    <div className="field">
+                        <label className="field__label">Diameter</label>
+                        <div className="field__control">
+                            <SizeSelect items={this.state.size.radius} onClick={this.handleRadiusClick} />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="fields-group">
+                    <h4 className="fields-group__heading">New size</h4>
+                    <div className="field">
+                        <label className="field__label">Diameter</label>
+                        <div className="field__control">
+                            <SizeSelect items={this.state.size.newDiameter} onClick={this.handleNewDiameterClick} />
+                        </div>
+                    </div>
+                    <div className="field">
+                        <div className="field__control">
+                            <CompareResults 
+                                widths={this.state.size.width} 
+                                heights={this.state.size.height} 
+                                original={new Tyre(this.state.original.width, this.state.original.height, this.state.original.radius)}
+                                newDiameter={this.state.new.diameter}
+                                />
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }
